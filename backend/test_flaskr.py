@@ -88,7 +88,7 @@ class TriviaTestCase(unittest.TestCase):
     def test_post_quiz(self):
         request = {
         "previous_questions": [1, 4, 20, 15],
-        "quiz_category": 'Science'
+        "quiz_category": {"type":'Science',"id":1}
         }
 
         res = self.client().post('/quizzes', json = request)
@@ -97,7 +97,7 @@ class TriviaTestCase(unittest.TestCase):
     def test_post_quiz_with_invalid_category(self):
         request = {
         "previous_questions": [1, 4, 20, 15],
-        "quiz_category": 'science'
+        "quiz_category": {"type":'science',"id":1}
         }
         res = self.client().post('/quizzes', json = request)
         self.assertEqual(res.status_code, 422)
